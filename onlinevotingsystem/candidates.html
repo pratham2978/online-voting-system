@@ -1,0 +1,159 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Candidates - Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <svg width="30" height="30" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-icon"><rect x="4" y="4" width="8" height="8" rx="1" fill="#F98D2E"/> <rect x="4" y="16" width="8" height="8" rx="1" fill="#F98D2E"/> <rect x="4" y="28" width="8" height="8" rx="1" fill="#F98D2E"/> <rect x="16" y="4" width="8" height="8" rx="1" fill="#FFFFFF"/> <rect x="16" y="16" width="8" height="8" rx="1" fill="#FFFFFF" stroke="#EAECEF" stroke-width="1"/> <rect x="16" y="28" width="8" height="8" rx="1" fill="#FFFFFF"/> <rect x="28" y="4" width="8" height="8" rx="1" fill="#28a745"/> <rect x="28" y="16" width="8" height="8" rx="1" fill="#28a745"/> <rect x="28" y="28" width="8" height="8" rx="1" fill="#28a745"/></svg>
+                    <span>Admin Panel</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                
+                    <li><a href="candidates.html" class="active"><i class="fa-solid fa-user-tie"></i> Candidates</a></li>
+                   
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="admin-login.html"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+             <header class="dashboard-header">
+                <div class="header-left">
+                    <button class="menu-toggle"><i class="fa-solid fa-bars"></i></button>
+                    <h1>Manage Candidates</h1>
+                </div>
+                <div class="header-right">
+                    <div class="user-profile">
+                        <img src="https://via.placeholder.com/40" alt="Admin Avatar">
+                    </div>
+                </div>
+            </header>
+
+            <div class="page-grid">
+                <div class="form-panel content-panel">
+                    <h2 class="panel-title">Add New Candidate</h2>
+                    <form>
+                        <div class="form-group"><label for="candidate-name">Full Name</label><input type="text" id="candidate-name" placeholder="Enter candidate's full name" required></div>
+                        <div class="form-group"><label for="candidate-party">Political Party</label><input type="text" id="candidate-party" placeholder="e.g., National Party" required></div>
+                        <div class="form-group"><label for="election">Assign to Election</label><div class="select-wrapper"><select id="election" required><option value="" disabled selected>Select an election</option><option value="ge2025">General Election 2025</option><option value="se2024">State Election 2024</option></select><i class="fa-solid fa-chevron-down select-arrow"></i></div></div>
+                        <div class="form-group"><label for="candidate-photo">Candidate Photo</label><input type="file" id="candidate-photo" class="file-input"></div>
+                        <button type="submit" class="btn btn-primary btn-full"><i class="fa-solid fa-plus"></i> Add Candidate</button>
+                    </form>
+                </div>
+                <div class="table-panel content-panel">
+                     <h2 class="panel-title">Existing Candidates</h2>
+                     <div class="table-container">
+                         <table>
+                             <thead><tr><th>Candidate</th><th>Party</th><th>Election</th><th>Actions</th></tr></thead>
+                             <tbody>
+                                 <tr>
+                                     <td><div class="user-cell"><img src="https://via.placeholder.com/40" alt="Candidate Photo" class="table-photo"><span>Amit Singh</span></div></td>
+                                     <td>National Party</td><td>General Election 2025</td>
+                                     <td><div class="action-buttons"><button class="btn-action btn-edit"><i class="fa-solid fa-pencil"></i></button><button class="btn-action btn-danger"><i class="fa-solid fa-trash"></i></button></div></td>
+                                 </tr>
+                                 <tr>
+                                     <td><div class="user-cell"><img src="https://via.placeholder.com/40" alt="Candidate Photo" class="table-photo"><span>Sunita Patel</span></div></td>
+                                     <td>Regional Party</td><td>State Election 2024</td>
+                                     <td><div class="action-buttons"><button class="btn-action btn-edit"><i class="fa-solid fa-pencil"></i></button><button class="btn-action btn-danger"><i class="fa-solid fa-trash"></i></button></div></td>
+                                 </tr>
+                                  <tr>
+                                     <td><div class="user-cell"><img src="https://via.placeholder.com/40" alt="Candidate Photo" class="table-photo"><span>Rajesh Kumar</span></div></td>
+                                     <td>Independent</td><td>General Election 2025</td>
+                                     <td><div class="action-buttons"><button class="btn-action btn-edit"><i class="fa-solid fa-pencil"></i></button><button class="btn-action btn-danger"><i class="fa-solid fa-trash"></i></button></div></td>
+                                 </tr>
+                             </tbody>
+                         </table>
+                     </div>
+                </div>
+            </div>
+        </main>
+        <div class="overlay"></div>
+    </div>
+    <script src="admin-script.js"></script>
+<!-- </body>
+</html> --> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Candidates - Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <svg width="30" height="30" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-icon"><rect x="4" y="4" width="8" height="8" rx="1" fill="#F98D2E"/> <rect x="4" y="16" width="8" height="8" rx="1" fill="#F98D2E"/> <rect x="4" y="28" width="8" height="8" rx="1" fill="#F98D2E"/> <rect x="16" y="4" width="8" height="8" rx="1" fill="#FFFFFF"/> <rect x="16" y="16" width="8" height="8" rx="1" fill="#FFFFFF" stroke="#EAECEF" stroke-width="1"/> <rect x="16" y="28" width="8" height="8" rx="1" fill="#FFFFFF"/> <rect x="28" y="4" width="8" height="8" rx="1" fill="#28a745"/> <rect x="28" y="16" width="8" height="8" rx="1" fill="#28a745"/> <rect x="28" y="28" width="8" height="8" rx="1" fill="#28a745"/></svg>
+                    <span>Admin Panel</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="candidates.html" class="active"><i class="fa-solid fa-user-tie"></i> Candidates</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="admin-login.html"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+             <header class="dashboard-header">
+                <div class="header-left">
+                    <button class="menu-toggle"><i class="fa-solid fa-bars"></i></button>
+                    <h1>Manage Candidates</h1>
+                </div>
+                <div class="header-right">
+                    <div class="user-profile">
+                        <img src="https://via.placeholder.com/40" alt="Admin Avatar">
+                    </div>
+                </div>
+            </header>
+
+            <div class="page-grid">
+                <div class="form-panel content-panel">
+                    <h2 class="panel-title">Add New Candidate</h2>
+                    <form id="add-candidate-form">
+                        <div class="form-group"><label for="candidate-name">Full Name</label><input type="text" id="candidate-name" placeholder="Enter candidate's full name" required></div>
+                        <div class="form-group"><label for="candidate-party">Political Party</label><input type="text" id="candidate-party" placeholder="e.g., National Party" required></div>
+                        <div class="form-group"><label for="election">Assign to Election</label><div class="select-wrapper"><select id="election" required><option value="" disabled selected>Select an election</option><option value="General Election 2025">General Election 2025</option><option value="State Election 2024">State Election 2024</option></select><i class="fa-solid fa-chevron-down select-arrow"></i></div></div>
+                        <div class="form-group"><label for="candidate-photo">Candidate Photo</label><input type="file" id="candidate-photo" class="file-input" accept="image/*"></div>
+                        <button type="submit" class="btn btn-primary btn-full"><i class="fa-solid fa-plus"></i> Add Candidate</button>
+                    </form>
+                </div>
+                <div class="table-panel content-panel">
+                     <h2 class="panel-title">Existing Candidates</h2>
+                     <div class="table-container">
+                         <table>
+                             <thead><tr><th>Candidate</th><th>Party</th><th>Election</th><th>Actions</th></tr></thead>
+                             <tbody id="candidate-list">
+                                 </tbody>
+                         </table>
+                     </div>
+                </div>
+            </div>
+        </main>
+        <div class="overlay"></div>
+    </div>
+    <script src="admin-script.js"></script>
+</body>
+</html>
