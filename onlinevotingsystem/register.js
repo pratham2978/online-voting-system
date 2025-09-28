@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // --- 3. Form Submission and Validation ---
-    registrationForm.addEventListener('submit', (event) => {
+    registrationForm.addEventListener('submit', async (event) => {
         // Prevent the default form submission which reloads the page
         event.preventDefault();
 
@@ -62,7 +62,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const fullName = document.getElementById('full-name').value.trim();
         const dob = document.getElementById('dob').value.trim();
         const gender = document.getElementById('gender').value;
-        const address = document.getElementById('address').value.trim();
+        const streetAddress = document.getElementById('street-address').value.trim();
+        const city = document.getElementById('city').value.trim();
+        const state = document.getElementById('state').value.trim();
+        const pincode = document.getElementById('pincode').value.trim();
         const email = document.getElementById('email-address').value.trim();
         const phone = document.getElementById('phone-number').value.trim();
         const aadhaar = document.getElementById('aadhaar').value.trim();
@@ -73,8 +76,14 @@ document.addEventListener('DOMContentLoaded', () => {
         // --- Validation Checks ---
         
         // Check for empty required fields
-        if (!fullName || !dob || !gender || !address || !email || !phone || !aadhaar || !password || !confirmPassword) {
+        if (!fullName || !dob || !gender || !streetAddress || !city || !state || !pincode || !email || !phone || !aadhaar || !password || !confirmPassword) {
             alert('Please fill out all required fields.');
+            return;
+        }
+
+        // Validate Pincode (must be 6 digits)
+        if (!/^\d{6}$/.test(pincode)) {
+            alert('Please enter a valid 6-digit pincode.');
             return;
         }
 
@@ -98,9 +107,9 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Validate Phone Number (must be 10 digits)
-        if (!/^\d{10}$/.test(phone)) {
-            alert('Please enter a valid 10-digit phone number.');
+        // Validate Phone Number (must be 10 digits starting with 6-9)
+        if (!/^[6-9]\d{9}$/.test(phone)) {
+            alert('Please enter a valid Indian phone number (10 digits starting with 6-9).');
             return;
         }
 
@@ -116,9 +125,15 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         
-        // Validate Password Strength (e.g., at least 8 characters)
+        // Validate Password Strength (must match backend requirements)
         if (password.length < 8) {
             alert('Password must be at least 8 characters long.');
+            return;
+        }
+        
+        // Check for uppercase, lowercase, and number
+        if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(password)) {
+            alert('Password must contain at least one lowercase letter, one uppercase letter, and one number.');
             return;
         }
         
@@ -131,22 +146,60 @@ document.addEventListener('DOMContentLoaded', () => {
         // --- If all validations pass ---
         console.log('Form Submitted Successfully!');
         
-        // Create a data object with the voter's information
+        // Prepare voter data for backend API
+        // Convert date from DD-MM-YYYY to ISO format
+        const dobPartsForAPI = dob.split('-');
+        const dobISO = `${dobPartsForAPI[2]}-${dobPartsForAPI[1]}-${dobPartsForAPI[0]}`; // Convert to YYYY-MM-DD
+        
         const voterData = {
             fullName,
-            dob,
-            gender,
-            address,
+            dateOfBirth: dobISO,
+            gender: gender.toLowerCase(), // Convert to lowercase for backend validation
             email,
-            phone,
-            aadhaarLast4: aadhaar.slice(-4), // Storing only last 4 digits as hinted
-            password: '***' // Never log or store plain text passwords
+            phoneNumber: phone,
+            aadhaarNumber: aadhaar,
+            // Address object matching backend model structure
+            address: {
+                street: streetAddress,
+                city: city,
+                state: state,
+                pincode: pincode
+            },
+            password: password
         };
         
-        console.log('Voter Data:', voterData);
-        alert('✅ Registration Successful!\nYour information has been submitted for verification.');
-
-        // Reset the form after successful submission
-        registrationForm.reset();
+        // Show loading state
+        const submitButton = document.querySelector('.btn-register') || document.querySelector('.btn-primary');
+        let originalText = '';
+        if (submitButton) {
+            originalText = submitButton.innerHTML;
+            submitButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>&nbsp; Registering...';
+            submitButton.disabled = true;
+        }
+        
+        try {
+            // Call the registration API
+            const response = await auth.register(voterData);
+            
+            if (response.success) {
+                alert('✅ Registration Successful!\nYour account has been created. Redirecting to login page...');
+                
+                // Add a small delay before redirect for better user experience
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 1500);
+            } else {
+                alert('Registration failed: ' + response.message);
+            }
+        } catch (error) {
+            console.error('Registration error:', error);
+            alert('Registration failed: ' + error.message);
+        } finally {
+            // Reset button state
+            if (submitButton) {
+                submitButton.innerHTML = originalText;
+                submitButton.disabled = false;
+            }
+        }
     });
 });

@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <link rel="stylesheet" href="style.css">
+    <script src="api.js"></script>
 </head>
 <body>
 
@@ -38,21 +39,59 @@
                         <i class="fa-solid fa-eye toggle-password"></i>
                     </div>
                 </div>
-<!-- 
                 <button type="submit" class="btn btn-primary btn-full">
                     <i class="fa-solid fa-arrow-right-to-bracket"></i>&nbsp; Sign In
-                </button> -->
-                <a href="vote.html" class="btn btn-primary btn-full">
-    <i class="fa-solid fa-arrow-right"></i> Sign In
-</a>
+                </button>
             </form>
 
             <div class="login-footer">
-                <p>Don't have an account? <a href="#">Register here</a></p>
-                <p>Are you an admin? <a href="#">Admin login</a></p>
+                <p>Don't have an account? <a href="register.html">Register here</a></p>
+                <p>Are you an admin? <a href="admin.html">Admin login</a></p>
             </div>
         </div>
     </div>
+
+    <script>
+        // Handle login form submission
+        document.querySelector('.login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const submitButton = document.querySelector('.btn-primary');
+            
+            // Show loading state
+            submitButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>&nbsp; Signing In...';
+            submitButton.disabled = true;
+            
+            try {
+                const response = await auth.login(email, password);
+                
+                if (response.success) {
+                    // Success - redirect to voting page
+                    window.location.href = 'vote.html';
+                } else {
+                    alert('Login failed: ' + response.message);
+                }
+            } catch (error) {
+                alert('Login failed: ' + error.message);
+            } finally {
+                // Reset button
+                submitButton.innerHTML = '<i class="fa-solid fa-arrow-right-to-bracket"></i>&nbsp; Sign In';
+                submitButton.disabled = false;
+            }
+        });
+
+        // Toggle password visibility
+        document.querySelector('.toggle-password').addEventListener('click', function() {
+            const passwordInput = document.getElementById('password');
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            
+            this.classList.toggle('fa-eye');
+            this.classList.toggle('fa-eye-slash');
+        });
+    </script>
 
 </body>
 </html>
