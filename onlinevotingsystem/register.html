@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <link rel="stylesheet" href="style.css">
+    <script src="api.js"></script>
 </head>
 <body>
 
@@ -55,8 +56,24 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="address">Address <span class="required">*</span></label>
-                    <textarea id="address" placeholder="Enter your full address" rows="3" required></textarea>
+                    <label for="street-address">Street Address <span class="required">*</span></label>
+                    <input type="text" id="street-address" placeholder="House No., Street, Area" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="city">City <span class="required">*</span></label>
+                        <input type="text" id="city" placeholder="Enter your city" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="state">State <span class="required">*</span></label>
+                        <input type="text" id="state" placeholder="Enter your state" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="pincode">Pincode <span class="required">*</span></label>
+                    <input type="text" id="pincode" placeholder="6-digit pincode" maxlength="6" required>
                 </div>
 
                 <h3 class="form-section-title">Contact Information</h3>
